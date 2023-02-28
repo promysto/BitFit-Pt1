@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 const val EXERCISE_EXTRA = "EXERCISE_EXTRA"
 private const val TAG = "ExerciseAdapter"
 
-class ExerciseAdapter(private val context: Context, private val displayExercises: List<DisplayExercise>) :
+class ExerciseAdapter(private val context: Context, private val exercises: List<DisplayExercise>) :
     RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,19 +22,19 @@ class ExerciseAdapter(private val context: Context, private val displayExercises
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = displayExercises[position]
-        holder.bind(article)
+        val exercise = exercises[position]
+        holder.bind(exercise)
     }
 
-    override fun getItemCount() = displayExercises.size
+    override fun getItemCount() = exercises.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
-        private val exerciseTextView = itemView.findViewById<TextView>(R.id.exercise_input_EV)
-        private val weightTextView = itemView.findViewById<TextView>(R.id.weight_input_EV)
-        private val repsTextView = itemView.findViewById<TextView>(R.id.reps_input_EV)
-        private val setsTextView = itemView.findViewById<TextView>(R.id.sets_input_EV)
+        private val exerciseTextView = itemView.findViewById<TextView>(R.id.exercise_TV)
+        private val weightTextView = itemView.findViewById<TextView>(R.id.weight_TV)
+        private val repsTextView = itemView.findViewById<TextView>(R.id.reps_TV)
+        private val setsTextView = itemView.findViewById<TextView>(R.id.sets_TV)
 
 
         init {
@@ -50,7 +50,7 @@ class ExerciseAdapter(private val context: Context, private val displayExercises
         }
         override fun onClick(v: View?) {
             // Get selected exercise
-            val exercise = displayExercises[absoluteAdapterPosition]
+            val exercise = exercises[absoluteAdapterPosition]
 
             //  Navigate to Details screen and pass selected exercise
             val intent = Intent(context, DetailActivity::class.java)

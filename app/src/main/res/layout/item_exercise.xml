@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/exercise_input_EV"
+        android:id="@+id/exercise_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -17,35 +17,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/weight_input_EV"
+        android:id="@+id/weight_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exercise_input_EV"
+        app:layout_constraintStart_toEndOf="@+id/exercise_TV"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/reps_input_EV"
+        android:id="@+id/reps_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="112dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight_input_EV" />
+        app:layout_constraintTop_toBottomOf="@+id/weight_TV" />
 
     <TextView
-        android:id="@+id/sets_input_EV"
+        android:id="@+id/sets_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="112dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reps_input_EV" />
+        app:layout_constraintTop_toBottomOf="@+id/reps_TV" />
 
     <TextView
         android:id="@+id/textView5"
@@ -54,6 +54,25 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="24dp"
         android:text="lbs"
-        app:layout_constraintStart_toEndOf="@+id/weight_input_EV"
+        app:layout_constraintStart_toEndOf="@+id/weight_TV"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:text="reps"
+        app:layout_constraintStart_toEndOf="@+id/reps_TV"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="sets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sets_TV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

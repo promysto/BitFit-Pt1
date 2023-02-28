@@ -1,5 +1,6 @@
 package com.example.bitfit_pt1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -10,14 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "MainActivity/"
 
 class MainActivity : AppCompatActivity() {
 
     private val exercises = mutableListOf<DisplayExercise>()
     private lateinit var exercisesRecyclerView: RecyclerView
-    private lateinit var add_exercise: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,26 +26,32 @@ class MainActivity : AppCompatActivity() {
         exercisesRecyclerView = findViewById(R.id.exercises)
         exercisesRecyclerView.adapter = exerciseAdapter
 
+        lifecycleScope.launch {
+            (application as ExerciseApplication).db.exerciseDao().getAll().collect { databaseList ->
+                databaseList.map { entity ->
+                    DisplayExercise(
+                        entity.exercise,
+                        entity.weight,
+                        entity.reps,
+                        entity.sets
+                    )
+                }.also { mappedList ->
+                    exercises.clear()
+                    exercises.addAll(mappedList)
+                    exerciseAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
         exercisesRecyclerView.layoutManager = LinearLayoutManager(this).also {
             val dividerItemDecoration = DividerItemDecoration(this, it.orientation)
             exercisesRecyclerView.addItemDecoration(dividerItemDecoration)
         }
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            (application as ExerciseApplication).db.exerciseDao().deleteAll()
-            (application as ExerciseApplication).db.exerciseDao()
-                .insertAll(exercises.map {
-                    ExerciseEntity(
-                        exercise = it.exercise,
-                        weight = it.weight,
-                        reps = it.reps,
-                        sets = it.sets
-                    )
-                })
-        }
-        add_exercise = findViewById(R.id.add_exercise_BTN)
-        add_exercise.setOnClickListener {
-
+        val addExercise = findViewById<Button>(R.id.add_exercise_BTN)
+        addExercise.setOnClickListener{
+            val intent = Intent(this, DetailActivity::class.java)
+            this.startActivity(intent)
         }
     }
 }

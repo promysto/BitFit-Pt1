@@ -11,7 +11,7 @@ interface ExerciseDao {
     fun getAll(): Flow<List<ExerciseEntity>>
 
     @Insert
-    fun insertAll(articles: List<ExerciseEntity>)
+    fun insertAll(articles: ExerciseEntity)
 
     @Query("DELETE FROM exercise_table")
     fun deleteAll()
